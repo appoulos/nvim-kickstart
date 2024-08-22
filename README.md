@@ -12,6 +12,10 @@ A starting point for Neovim that is:
 
 ## Installation
 
+### Add alias
+
+- alias kvim="NVIM_APPNAME=nvim-kickstart nvim"
+
 ### Install Neovim
 
 Kickstart.nvim targets *only* the latest
