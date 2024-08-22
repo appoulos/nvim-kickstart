@@ -650,17 +650,25 @@ require('lazy').setup({
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
+      if jit.arch ~= 'arm64' then
+        vim.list_extend(ensure_installed, {
+          'asm-lsp', -- long rust compilation
+          'checkmake', -- not in aarch64
+          'clangd', -- not in aarch64
+          'stylua', -- not in aarch64 -- Used to format Lua code
+        })
+      end
       vim.list_extend(ensure_installed, {
         -- 'asm-lsp', -- long rust compilation
         'bash-language-server',
-        'checkmake',
-        'clangd',
+        -- 'checkmake', -- not in aarch64
+        -- 'clangd', -- not in aarch64
         'goimports',
         'gopls',
         'html-lsp',
         'jdtls',
         'json-lsp',
-        'stylua', -- Used to format Lua code
+        -- 'stylua', -- not in aarch64 -- Used to format Lua code
         'tailwindcss-language-server',
         'vim-language-server',
         'yaml-language-server',
