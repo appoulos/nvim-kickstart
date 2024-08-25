@@ -607,7 +607,8 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        -- apoulos trying to add clangd to arm64 on phone
+        -- clangd = { mason = false },
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
@@ -629,6 +630,7 @@ require('lazy').setup({
               completion = {
                 callSnippet = 'Replace',
               },
+              -- apoulos add vim global so warnings are gone
               diagnostics = {
                 globals = { 'vim' },
               },
