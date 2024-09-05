@@ -654,7 +654,7 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       if jit.arch ~= 'arm64' then
         vim.list_extend(ensure_installed, {
-          'asm-lsp', -- long rust compilation
+          -- 'asm-lsp', -- long rust compilation
           'checkmake', -- not in aarch64
           'clangd', -- not in aarch64
           'stylua', -- not in aarch64 -- Used to format Lua code
