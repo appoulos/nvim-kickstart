@@ -466,7 +466,7 @@ vim.keymap.set('n', '<M-k>', ':m .-2<CR>==', { desc = 'Line move up' })
 -- ["<A-j>"] = ":m '>+1<CR>gv-gv",
 -- ["<A-k>"] = ":m '<-2<CR>gv-gv",
 vim.keymap.set('x', '<M-j>', ":m '>+1<CR>gv-gv", { desc = 'Block move down' })
-vim.keymap.set('x', '<M-k>', ":m '>-3<CR>gv-gv", { desc = 'Block move up' })
+vim.keymap.set('x', '<M-k>', ":m '>-3<CR>gv+gv", { desc = 'Block move up' })
 -- v: Better indenting
 -- ["<"] = "<gv",
 -- [">"] = ">gv",
