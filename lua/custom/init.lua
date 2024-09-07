@@ -216,7 +216,7 @@ function CompileRun()
   -- vim.cmd "!g++ % -o %<"
   elseif ft == 'java' then
     -- vim.cmd ':split term://javac *.java && java -cp %:p:h %:t:r'
-    vim.cmd ':split term://javac % && java -cp %:p:h %:t:r'
+    vim.cmd ':split term://javac % && java -cp %:p:h %:t:r %:t:r'
   -- vim.cmd "!clear; javac % && java -cp %:p:h %:t:r"
   -- vim.cmd ":split term://javac --enable-preview --source 21 % && java --enable-preview -cp %:p:h %:t:r"
   elseif ft == 'haskell' then
@@ -434,7 +434,7 @@ vim.keymap.set('n', '<leader>tg', function()
   vim.notify 'hi'
 end, { desc = '[T]oggle [G]it sign column' })
 
-vim.keymap.set('n', '<leader>c', ':bd<CR>', { desc = '[C]lose Buffer' })
+vim.keymap.set('n', '<leader>x', ':bd<CR>', { desc = 'Close Buffer' })
 -- from lunarvim .local/share/lunarvim/lvim/lua/lvim/keymappings.lua
 -- navigate tab completion with <c-j> and <c-k>
 -- runs conditionally
@@ -483,3 +483,12 @@ vim.keymap.set('v', '>', '>gv', { desc = 'Indent' })
 --   root_dir = vim.fs.dirname(vim.fs.find({ '.git', '.vim', 'nvim' }, { upward = true })[1]),
 --   settings = { Lua = { diagnostics = { globals = { 'vim' } } } },
 -- }
+
+--fix c/cpp comment string
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('FixCommentString', { clear = true }),
+  callback = function(ev)
+    vim.bo[ev.buf].commentstring = '// %s'
+  end,
+  pattern = { 'c', 'cpp' },
+})
