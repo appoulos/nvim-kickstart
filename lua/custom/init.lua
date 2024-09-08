@@ -121,15 +121,15 @@ vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
 
 -- go format and fix imports on save
 -- from: https://github.com/ray-x/go.nvim
-local format_sync_grp = vim.api.nvim_create_augroup('GoFormat', {})
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*.go',
-  callback = function()
-    -- require('go.format').gofmt()
-    require('go.format').goimport()
-  end,
-  group = format_sync_grp,
-})
+-- local format_sync_grp = vim.api.nvim_create_augroup('GoFormat', {})
+-- vim.api.nvim_create_autocmd('BufWritePre', {
+--   pattern = '*.go',
+--   callback = function()
+--     -- require('go.format').gofmt()
+--     require('go.format').goimport()
+--   end,
+--   group = format_sync_grp,
+-- })
 
 -- hide command bar at bottom of screen
 -- vim.opt.cmdheight = 0
