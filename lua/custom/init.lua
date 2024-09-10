@@ -135,7 +135,8 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 -- vim.opt.cmdheight = 0
 
 -- fold default to marker
-vim.opt.foldmethod = 'marker'
+-- folds have bug: on save, current fold is folded and next fold is opened
+-- vim.opt.foldmethod = 'marker'
 
 -- autoinsert on terminal window entering
 vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {
