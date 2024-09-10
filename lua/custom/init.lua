@@ -121,15 +121,15 @@ vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
 
 -- go format and fix imports on save
 -- from: https://github.com/ray-x/go.nvim
-local format_sync_grp = vim.api.nvim_create_augroup('GoFormat', {})
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*.go',
-  callback = function()
-    -- require('go.format').gofmt()
-    require('go.format').goimport()
-  end,
-  group = format_sync_grp,
-})
+-- local format_sync_grp = vim.api.nvim_create_augroup('GoFormat', {})
+-- vim.api.nvim_create_autocmd('BufWritePre', {
+--   pattern = '*.go',
+--   callback = function()
+--     -- require('go.format').gofmt()
+--     require('go.format').goimport()
+--   end,
+--   group = format_sync_grp,
+-- })
 
 -- hide command bar at bottom of screen
 -- vim.opt.cmdheight = 0
@@ -137,6 +137,36 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 -- fold default to marker
 -- folds have bug: on save, current fold is folded and next fold is opened
 -- vim.opt.foldmethod = 'marker'
+
+-- apoulos doesn't work correctly: opens next fold down
+-- from: https://stackoverflow.com/questions/37552913/vim-how-to-keep-folds-on-save
+-- vim.api.nvim_create_autocmd({ 'BufWinLeave' }, {
+--   pattern = { '*.*' },
+--   desc = 'save view (folds), when closing file',
+--   command = 'mkview',
+-- })
+-- vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
+--   pattern = { '*.*' },
+--   desc = 'load view (folds), when opening file',
+--   command = 'silent! loadview',
+--   -- command = 'foldopen',
+-- })
+
+-- apoulos doesn't work correctly: opens next fold down
+-- vim.cmd [[
+-- autocmd BuffWrite *.* mkview
+-- autocmd BuffRead *.* silent! loadview
+-- ]]
+
+-- apoulos doesn't work correctly: opens next fold down
+-- vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+--   pattern = '*',
+--   command = 'mkview',
+-- })
+-- vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+--   pattern = '*',
+--   command = 'silent! loadview',
+-- })
 
 -- autoinsert on terminal window entering
 vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {
@@ -265,73 +295,73 @@ function CompileRun()
   end
 end
 
-vim.cmd [[
-  " search on // for select mode
-  "vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
-
-  func! CompileRunGcc()
-    " exec "w"
-    exec "update"
-    if &filetype == 'c'
-      exec ":split term://gcc % -o %< && ./%<"
-      " exec ":split term://make && ./%<"
-      " exec "!clear; gcc % -o %< && ./%<"
-      " exec "!clear; gcc % -o %<"
-      " exec ":split term://[ -f Makefile ] && make || gcc % -o %< && ./%<"
-      " exec ":split term://test -f Makefile && make || gcc % -o %< && ./%<"
-    elseif &filetype == 'cpp'
-      exec ":split term://g++ % -o %< && ./%<"
-      " exec "!g++ % -o %<"
-    elseif &filetype == 'java'
-      exec ":split term://javac *.java && java -cp %:p:h %:t:r"
-      " exec ":split term://javac % && java -cp %:p:h %:t:r"
-      " exec "!clear; javac % && java -cp %:p:h %:t:r"
-      " exec ":split term://javac --enable-preview --source 21 % && java --enable-preview -cp %:p:h %:t:r"
-    elseif &filetype == 'haskell'
-      exec ":split term://ghc -dynamic % && ./%<"
-    elseif &filetype == 'tcl'
-      exec ":split term://tclsh %"
-    elseif &filetype == 'expect'
-      exec ":split term://expect %"
-    elseif &filetype == 'perl'
-      exec ":split term://perl %"
-    elseif &filetype == 'sh'
-      exec ":split term://bash %"
-    elseif &filetype == 'bash'
-      exec ":split term://bash %"
-    elseif &filetype == 'basic'
-      exec ":split term://bash %"
-    elseif &filetype == 'basic'
-      exec ":split term://makehex.sh %"
-    elseif &filetype == 'rust'
-      exec ":split term://cargo run && echo && echo DONE. && read a"
-    elseif &filetype == 'python'
-      exec ":split term://python %"
-    elseif &filetype == 'html'
-      exec "!firefox % &"
-    elseif &filetype == 'javascript'
-      exec ":split term://node %"
-    elseif &filetype == 'ruby'
-      exec ":split term://ruby %"
-    elseif &filetype == 'zig'
-      exec ":split term://zig run -fno-llvm -fno-lld %"
-    elseif &filetype == 'go'
-      exec ":split term://go run ."
-      " exec ":split term://go run . && echo && echo 'DONE (press return)' && read a"
-      " exec ":split term://go build -o ./a.out % && ./a.out && echo && echo 'DONE (press return)' && read a"
-      " exec ":split term://go build % && ./%< && echo && echo DONE. && read a"
-      " exec "!go build %<"
-      " exec "!time go run %"
-      " exec ":split term://go run %"
-      " exec ":split term://(go run % || read a)"
-      " best behaved on ctrl-d or fatal"
-      " exec ":split term://(go run %)"
-    elseif &filetype == 'mkd'
-      exec "!~/.vim/markdown.pl % > %.html &"
-      exec "!firefox %.html &"
-    endif
-  endfunc
-]]
+-- vim.cmd [[
+--   " search on // for select mode
+--   "vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+--
+--   func! CompileRunGcc()
+--     " exec "w"
+--     exec "update"
+--     if &filetype == 'c'
+--       exec ":split term://gcc % -o %< && ./%<"
+--       " exec ":split term://make && ./%<"
+--       " exec "!clear; gcc % -o %< && ./%<"
+--       " exec "!clear; gcc % -o %<"
+--       " exec ":split term://[ -f Makefile ] && make || gcc % -o %< && ./%<"
+--       " exec ":split term://test -f Makefile && make || gcc % -o %< && ./%<"
+--     elseif &filetype == 'cpp'
+--       exec ":split term://g++ % -o %< && ./%<"
+--       " exec "!g++ % -o %<"
+--     elseif &filetype == 'java'
+--       exec ":split term://javac *.java && java -cp %:p:h %:t:r"
+--       " exec ":split term://javac % && java -cp %:p:h %:t:r"
+--       " exec "!clear; javac % && java -cp %:p:h %:t:r"
+--       " exec ":split term://javac --enable-preview --source 21 % && java --enable-preview -cp %:p:h %:t:r"
+--     elseif &filetype == 'haskell'
+--       exec ":split term://ghc -dynamic % && ./%<"
+--     elseif &filetype == 'tcl'
+--       exec ":split term://tclsh %"
+--     elseif &filetype == 'expect'
+--       exec ":split term://expect %"
+--     elseif &filetype == 'perl'
+--       exec ":split term://perl %"
+--     elseif &filetype == 'sh'
+--       exec ":split term://bash %"
+--     elseif &filetype == 'bash'
+--       exec ":split term://bash %"
+--     elseif &filetype == 'basic'
+--       exec ":split term://bash %"
+--     elseif &filetype == 'basic'
+--       exec ":split term://makehex.sh %"
+--     elseif &filetype == 'rust'
+--       exec ":split term://cargo run && echo && echo DONE. && read a"
+--     elseif &filetype == 'python'
+--       exec ":split term://python %"
+--     elseif &filetype == 'html'
+--       exec "!firefox % &"
+--     elseif &filetype == 'javascript'
+--       exec ":split term://node %"
+--     elseif &filetype == 'ruby'
+--       exec ":split term://ruby %"
+--     elseif &filetype == 'zig'
+--       exec ":split term://zig run -fno-llvm -fno-lld %"
+--     elseif &filetype == 'go'
+--       exec ":split term://go run ."
+--       " exec ":split term://go run . && echo && echo 'DONE (press return)' && read a"
+--       " exec ":split term://go build -o ./a.out % && ./a.out && echo && echo 'DONE (press return)' && read a"
+--       " exec ":split term://go build % && ./%< && echo && echo DONE. && read a"
+--       " exec "!go build %<"
+--       " exec "!time go run %"
+--       " exec ":split term://go run %"
+--       " exec ":split term://(go run % || read a)"
+--       " best behaved on ctrl-d or fatal"
+--       " exec ":split term://(go run %)"
+--     elseif &filetype == 'mkd'
+--       exec "!~/.vim/markdown.pl % > %.html &"
+--       exec "!firefox %.html &"
+--     endif
+--   endfunc
+-- ]]
 
 local harpoon = require 'harpoon'
 harpoon:setup() -- REQUIRED

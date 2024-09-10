@@ -663,6 +663,8 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         -- 'asm-lsp', -- long rust compilation
         'bash-language-server',
+        'shellcheck',
+        'shfmt',
         -- 'checkmake', -- not in aarch64
         -- 'clangd', -- not in aarch64
         'goimports',
