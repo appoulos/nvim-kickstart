@@ -218,7 +218,7 @@ vim.keymap.set('n', '<tab>', ':bnext<CR>', { desc = 'Next Buffer' })
 vim.keymap.set('n', '<S-tab>', ':bprev<CR>', { desc = 'Previous Buffer' })
 vim.keymap.set('n', '<M-q>', ':q<CR>', { desc = 'Quit' })
 vim.keymap.set('n', '<M-s>', ':update<CR>', { desc = 'Update' })
-vim.keymap.set('n', '<M-g>', ':w<CR>!gco<CR>', { desc = 'Save and git commit' })
+vim.keymap.set('n', '<M-g>', ':update<CR>:!gco<CR>', { desc = 'Save and git commit' })
 vim.keymap.set('n', '<M-t>', ':split term://bash<CR>', { desc = 'Terminal' })
 -- search on // for select mode
 -- vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
@@ -259,7 +259,7 @@ function CompileRun()
   elseif ft == 'perl' then
     vim.cmd ':split term://perl %'
   elseif ft == 'sh' then
-    vim.cmd ':split term://bash %'
+    vim.cmd ':edit term://bash %'
   elseif ft == 'bash' then
     vim.cmd ':split term://bash %'
   elseif ft == 'basic' then
