@@ -247,7 +247,8 @@ function CompileRun()
   -- vim.cmd "!g++ % -o %<"
   elseif ft == 'java' then
     -- vim.cmd ':split term://javac *.java && java -cp %:p:h %:t:r'
-    vim.cmd ':edit term://javac -d .class % && java -cp %:p:h %:t:r %:t:r'
+    os.execute '[[ ! -d ".class" ]] && mkdir .class'
+    vim.cmd ':edit term://javac -d .class % && java -cp %:p:h/.class %:t:r %:t:r'
     -- vim.cmd ':split term://javac % && java -cp %:p:h %:t:r %:t:r'
     -- vim.cmd "!clear; javac % && java -cp %:p:h %:t:r"
     -- vim.cmd ":split term://javac --enable-preview --source 21 % && java --enable-preview -cp %:p:h %:t:r"
