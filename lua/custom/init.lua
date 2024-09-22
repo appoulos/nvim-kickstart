@@ -1,5 +1,6 @@
 -- require('lazy').setup {
 --   -- apoulos lazy
+--   { 'mfussenegger/nvim-lint' },
 --   {
 --     'folke/zen-mode.nvim',
 --     opts = {
