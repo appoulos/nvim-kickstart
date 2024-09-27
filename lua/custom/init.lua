@@ -176,6 +176,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local bufnr = args.buf
     local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client == nil then
+      return
+    end
 
     if client.name == 'gopls' then
       -- hack: Preflight async request to gopls, which can prevent blocking when save buffer on first time opened
