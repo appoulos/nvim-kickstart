@@ -696,7 +696,7 @@ require('lazy').setup({
         'jdtls',
         'json-lsp',
         -- 'stylua', -- not in aarch64 -- Used to format Lua code
-        'tailwindcss-language-server',
+        -- 'tailwindcss-language-server',
         'vim-language-server',
         'yaml-language-server',
         'zls',

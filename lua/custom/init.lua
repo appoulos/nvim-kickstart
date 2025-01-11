@@ -313,6 +313,7 @@ function CompileRun()
   elseif ft == 'java' then
     -- vim.cmd ':split term://javac *.java && java -cp %:p:h %:t:r'
     os.execute '[[ ! -d ".class" ]] && mkdir .class'
+    -- vim.cmd ':edit term://javac -Xlint:deprecation -d .class % && java -cp %:p:h/.class %:t:r %:t:r'
     vim.cmd ':edit term://javac -d .class % && java -cp %:p:h/.class %:t:r %:t:r'
     -- vim.cmd ':split term://javac % && java -cp %:p:h %:t:r %:t:r'
     -- vim.cmd "!clear; javac % && java -cp %:p:h %:t:r"

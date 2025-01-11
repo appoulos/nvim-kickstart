@@ -1,0 +1,2 @@
+vim.cmd.packadd 'tcl.nvim'
+require('tcl').setup()
