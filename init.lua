@@ -954,7 +954,6 @@ require('lazy').setup({
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
 
-      -- apoulos change comment color
       require('tokyonight').setup {
         -- use the night style
         style = 'night',
@@ -963,13 +962,13 @@ require('lazy').setup({
           functions = {},
         },
         on_highlights = function() end,
-        -- Change the "hint" color to the "orange" color, and make the "error" color bright red
+        -- all colors: https://github.com/folke/tokyonight.nvim/blob/main/extras/lua/tokyonight_moon.lua
         on_colors = function(colors)
           colors.comment = '#999999' -- "#565f89"
-          -- colors.comment = '#666677' -- "#565f89"
           colors.bg = '#111111' -- "#24283b" -- '#111111'
           -- colors.hint = colors.orange
           -- colors.error = '#ff0000'
+          colors.fg_gutter = '#999999' -- line numbers
         end,
       }
 
