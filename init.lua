@@ -965,8 +965,8 @@ require('lazy').setup({
         on_highlights = function() end,
         -- Change the "hint" color to the "orange" color, and make the "error" color bright red
         on_colors = function(colors)
-          -- colors.comment = '#999999' -- "#565f89"
-          colors.comment = '#666677' -- "#565f89"
+          colors.comment = '#999999' -- "#565f89"
+          -- colors.comment = '#666677' -- "#565f89"
           colors.bg = '#111111' -- "#24283b" -- '#111111'
           -- colors.hint = colors.orange
           -- colors.error = '#ff0000'
