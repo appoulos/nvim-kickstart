@@ -36,7 +36,7 @@
 --   },
 -- }
 
--- set line number colors
+-- set line number colors: https://stackoverflow.com/questions/75277938/need-to-change-the-colour-of-line-numbers-in-neovim
 vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#999999' })
 vim.api.nvim_set_hl(0, 'LineNr', { fg = 'yellow' })
 vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#999999' })
