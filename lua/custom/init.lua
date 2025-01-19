@@ -36,6 +36,11 @@
 --   },
 -- }
 
+-- set line number colors
+vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#999999' })
+vim.api.nvim_set_hl(0, 'LineNr', { fg = 'yellow' })
+vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#999999' })
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 

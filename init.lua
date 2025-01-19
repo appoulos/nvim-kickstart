@@ -964,11 +964,11 @@ require('lazy').setup({
         on_highlights = function() end,
         -- all colors: https://github.com/folke/tokyonight.nvim/blob/main/extras/lua/tokyonight_moon.lua
         on_colors = function(colors)
-          colors.comment = '#999999' -- "#565f89"
+          colors.comment = '#888888' -- "#565f89"
           colors.bg = '#111111' -- "#24283b" -- '#111111'
           -- colors.hint = colors.orange
           -- colors.error = '#ff0000'
-          colors.fg_gutter = '#999999' -- line numbers
+          -- colors.fg_gutter = '#999999' -- line numbers messes up status line
         end,
       }
 
