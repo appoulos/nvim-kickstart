@@ -90,7 +90,8 @@ vim.opt.scrolloff = 4
 -- vim options
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
-vim.opt.relativenumber = true
+vim.opt.number = false
+vim.opt.relativenumber = false
 vim.opt.wrap = true
 
 -- -- Additional Plugins <https://www.lunarvim.org/docs/plugins#user-plugins>
@@ -469,6 +470,21 @@ vim.keymap.set('n', '<leader>tg', function()
   end
   vim.notify 'hi'
 end, { desc = '[T]oggle [G]it sign column' })
+
+vim.keymap.set('n', '<leader>tn', function()
+  -- auto makes which key small
+  -- local s = vim.opt.signcolumn._value
+  local s = vim.o.number
+  local r = vim.o.relativenumber
+  if s == true or r == true then
+    vim.o.number = false
+    vim.o.relativenumber = false
+  else
+    vim.o.number = true
+    vim.o.relativenumber = true
+  end
+  vim.notify 'this is a notify message!'
+end, { desc = '[T]oggle [N]umbers' })
 
 vim.keymap.set('n', '<leader>x', ':bd<CR>', { desc = 'Close Buffer' })
 -- from lunarvim .local/share/lunarvim/lvim/lua/lvim/keymappings.lua
