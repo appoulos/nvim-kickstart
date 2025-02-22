@@ -526,6 +526,8 @@ vim.keymap.set('v', '<', '<gv', { desc = 'Unindent' })
 vim.keymap.set('v', '>', '>gv', { desc = 'Indent' })
 -- jdtls
 vim.keymap.set('n', '<M-o>', ":lua require'jdtls'.organize_imports()<CR>", { desc = 'jdtls Organize imports' })
+-- Uppercase previous word in Insert mode
+vim.keymap.set('i', '<C-f>', '<Esc>gUiw`]a', { desc = 'Uppercase previous word during insert' })
 -- nnoremap <A-o> <Cmd>lua require'jdtls'.organize_imports()<CR>
 -- nnoremap crv <Cmd>lua require('jdtls').extract_variable()<CR>
 -- vnoremap crv <Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>
