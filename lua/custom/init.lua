@@ -291,6 +291,7 @@ vim.keymap.set('n', '<M-,>', ':t.<CR>', { desc = 'Quit' })
 vim.keymap.set('n', '<M-s>', ':update<CR>', { desc = 'Update' })
 vim.keymap.set('n', '<M-g>', ':update<CR>:!gco<CR>', { desc = 'Save and git commit' })
 vim.keymap.set('n', '<M-t>', ':split term://bash<CR>', { desc = 'Terminal' })
+vim.keymap.set('n', '<M-.>', ':t.<CR>', { desc = 'Duplicate line' })
 -- search on // for select mode
 -- vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 vim.keymap.set('v', '/', '"fy/\\V<C-R>f<CR>', { desc = 'search selected' })
@@ -311,8 +312,10 @@ vim.keymap.set('v', '/', '"fy/\\V<C-R>f<CR>', { desc = 'search selected' })
 function CompileRun()
   vim.cmd 'update'
   local ft = vim.o.filetype
-  if ft == 'c' then
-    vim.cmd ':split term://gcc % -o %< && ./%<'
+  if ft == 'd' then
+    vim.cmd ':split term://rdmd %<'
+	elseif ft == 'c' then
+    vim.cmd ':split term://gcc -g % -o %< && ./%<'
   elseif ft == 'cpp' then
     vim.cmd ':split term://g++ % -o %< && ./%<'
   -- vim.cmd "!g++ % -o %<"
@@ -320,6 +323,7 @@ function CompileRun()
     -- vim.cmd ':split term://javac *.java && java -cp %:p:h %:t:r'
     os.execute '[[ ! -d ".class" ]] && mkdir .class'
     -- vim.cmd ':edit term://javac -Xlint:deprecation -d .class % && java -cp %:p:h/.class %:t:r %:t:r'
+    -- vim.cmd ':edit term://javac -d ./.class % && java -cp ./.class %:t:r %:t:r'
     vim.cmd ':edit term://javac -d .class % && java -cp %:p:h/.class %:t:r %:t:r'
     -- vim.cmd ':split term://javac % && java -cp %:p:h %:t:r %:t:r'
     -- vim.cmd "!clear; javac % && java -cp %:p:h %:t:r"

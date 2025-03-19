@@ -3,6 +3,7 @@
 --
 -- See the kickstart.nvim README for more information
 return {
+  -- { 'mg979/vim-visual-multi' },
   {
     'folke/zen-mode.nvim',
     opts = {
