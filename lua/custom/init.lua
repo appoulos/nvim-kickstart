@@ -90,7 +90,7 @@ vim.opt.scrolloff = 4
 -- vim options
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
--- vim.opt.expandtab = true
+vim.opt.expandtab = true
 vim.opt.number = false
 vim.opt.relativenumber = false
 vim.opt.wrap = true
@@ -151,6 +151,7 @@ vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
   callback = function()
     vim.opt.shiftwidth = 4
     vim.opt.tabstop = 4
+    vim.opt.expandtab = false
   end,
 })
 
