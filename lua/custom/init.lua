@@ -90,6 +90,7 @@ vim.opt.scrolloff = 4
 -- vim options
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
+-- vim.opt.expandtab = true
 vim.opt.number = false
 vim.opt.relativenumber = false
 vim.opt.wrap = true
@@ -142,6 +143,14 @@ vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
       -- vim.fn.nvim_exec('normal! g\'"', false)
       vim.api.nvim_exec2('normal! g`"', { output = false })
     end
+  end,
+})
+
+vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
+  pattern = { '*.java' },
+  callback = function()
+    vim.opt.shiftwidth = 4
+    vim.opt.tabstop = 4
   end,
 })
 
@@ -284,8 +293,8 @@ vim.keymap.set('n', '<M-a>', '<leader>a', { remap = true, desc = 'Compile/Build/
 --   CompileRun() -- vim.call 'CompileRunGcc'
 -- end,
 
-vim.keymap.set('n', '<tab>', ':bnext<CR>', { desc = 'Next Buffer' })
-vim.keymap.set('n', '<S-tab>', ':bprev<CR>', { desc = 'Previous Buffer' })
+vim.keymap.set('n', '<M-n>', ':bnext<CR>', { desc = 'Next Buffer' })
+vim.keymap.set('n', '<M-p>', ':bprev<CR>', { desc = 'Previous Buffer' })
 vim.keymap.set('n', '<M-q>', ':q<CR>', { desc = 'Quit' })
 vim.keymap.set('n', '<M-,>', ':t.<CR>', { desc = 'Quit' })
 vim.keymap.set('n', '<M-s>', ':update<CR>', { desc = 'Update' })
@@ -314,7 +323,7 @@ function CompileRun()
   local ft = vim.o.filetype
   if ft == 'd' then
     vim.cmd ':split term://rdmd %<'
-	elseif ft == 'c' then
+  elseif ft == 'c' then
     vim.cmd ':split term://gcc -g % -o %< && ./%<'
   elseif ft == 'cpp' then
     vim.cmd ':split term://g++ % -o %< && ./%<'

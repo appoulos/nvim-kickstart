@@ -12,7 +12,27 @@ return {
       -- refer to the configuration section below
     },
   },
-  { 'mfussenegger/nvim-jdtls' },
+  -- { 'mfussenegger/nvim-jdtls' },
+  {
+    'mfussenegger/nvim-jdtls',
+    -- config = {
+    --   settings = {
+    --     java = {
+    --       format = {
+    --         enabled = true,
+    --       },
+    --     },
+    --   },
+    -- },
+  },
+-- interface FormatOption {
+--         comments?: EnabledOption;
+--         enabled?: boolean;
+--         insertSpaces?: boolean;
+--         onType?: EnabledOption;
+--         settings?: FormatSettingsOption;
+--         tabSize?: number;
+-- }
   {
     'ThePrimeagen/harpoon',
     branch = 'harpoon2',
@@ -156,9 +176,9 @@ return {
 
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
-          --['<CR>'] = cmp.mapping.confirm { select = true },
-          --['<Tab>'] = cmp.mapping.select_next_item(),
-          --['<S-Tab>'] = cmp.mapping.select_prev_item(),
+          ['<CR>'] = cmp.mapping.confirm { select = true },
+          ['<Tab>'] = cmp.mapping.select_next_item(),
+          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
