@@ -12,27 +12,27 @@ return {
       -- refer to the configuration section below
     },
   },
-  -- { 'mfussenegger/nvim-jdtls' },
-  {
-    'mfussenegger/nvim-jdtls',
-    -- config = {
-    --   settings = {
-    --     java = {
-    --       format = {
-    --         enabled = true,
-    --       },
-    --     },
-    --   },
-    -- },
-  },
--- interface FormatOption {
---         comments?: EnabledOption;
---         enabled?: boolean;
---         insertSpaces?: boolean;
---         onType?: EnabledOption;
---         settings?: FormatSettingsOption;
---         tabSize?: number;
--- }
+  { 'mfussenegger/nvim-jdtls' },
+  -- {
+  --   'mfussenegger/nvim-jdtls',
+  --   -- config = {
+  --   --   settings = {
+  --   --     java = {
+  --   --       format = {
+  --   --         enabled = true,
+  --   --       },
+  --   --     },
+  --   --   },
+  --   -- },
+  -- },
+  -- interface FormatOption {
+  --         comments?: EnabledOption;
+  --         enabled?: boolean;
+  --         insertSpaces?: boolean;
+  --         onType?: EnabledOption;
+  --         settings?: FormatSettingsOption;
+  --         tabSize?: number;
+  -- }
   {
     'ThePrimeagen/harpoon',
     branch = 'harpoon2',

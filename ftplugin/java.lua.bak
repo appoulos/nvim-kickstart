@@ -4,10 +4,16 @@
 -- }
 -- require('jdtls').start_or_attach(config)
 
-
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
-    cmd = {'/home/apoulos/.local/share/nvim-kickstart/mason/bin/jdtls'},
+  cmd = {
+    '/home/apoulos/.local/share/nvim-kickstart/mason/bin/jdtls',
+    '-configuration',
+    '/home/apoulos/.cache/jdtls/config',
+    '-data',
+    '/home/apoulos/.cache/jdtls/workspace',
+  },
+  root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
   -- The command that starts the language server
   -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
 
@@ -21,11 +27,11 @@ local config = {
           -- Use Google Java style guidelines for formatting
           -- To use, make sure to download the file from https://github.com/google/styleguide/blob/gh-pages/eclipse-java-google-style.xml
           -- and place it in the ~/.local/share/eclipse directory
-          url = "/home/apoulos/.local/share/eclipse/eclipse-java-google-style.xm",
-          profile = "GoogleStyle",
+          url = '/home/apoulos/.local/share/eclipse/eclipse-java-google-style.xml',
+          profile = 'GoogleStyle',
         },
       },
-    }
+    },
   },
 }
 -- This starts a new client & server,
