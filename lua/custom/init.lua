@@ -575,8 +575,8 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'c', 'cpp' },
 })
 
+-- UFO plugin to allow folding
 -- use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
-
 vim.o.foldcolumn = '0' -- was '1' -- '0' is not bad
 vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 99
